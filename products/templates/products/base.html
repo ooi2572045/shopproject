@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'products/style.css' %}">
+    <meta charset="UTF-8">
+    <title>ショッピングサイト</title>
+</head>
+<body>
+<nav>
+    <a href="{% url 'article_list' %}">記事一覧</a>
+</nav>
+<nav class="navbar">
+    <div class="nav-left">
+        <a href="/" class="nav-logo">心霊館</a>
+    </div>
+
+    <!-- 検索バー削除済み -->
+
+    <div class="nav-right">
+        <a href="{% url 'cart' %}">カート</a>
+
+        {% if user.is_authenticated %}
+            <span>{{ user.username }} さん</span>
+            <a href="{% url 'logout' %}">ログアウト</a>
+        {% else %}
+            <a href="{% url 'login' %}">ログイン</a>
+            <a href="{% url 'signup' %}">新規登録</a>
+        {% endif %}
+    </div>
+
+    {% if user.is_authenticated %}
+        <p>{{ user.username }} としてログイン中</p>
+    {% else %}
+        <p>ログインしていません</p>
+    {% endif %}
+</nav>
+
+<hr>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

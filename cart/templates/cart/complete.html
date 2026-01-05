@@ -1,0 +1,20 @@
+<div class="complete-container">
+
+    <h1 class="complete-title">ご注文ありがとうございました！</h1>
+
+    <p class="complete-message">注文が正常に完了しました。</p>
+    <p class="complete-message">またのご利用をお待ちしております。</p>
+
+    <a href="/" class="complete-btn">トップページへ戻る</a>
+
+</div>
+
+<div class="complete-items">
+    {% for item in items %}
+        <div class="complete-item">
+            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+            <p>{{ item.product.name }} × {{ item.quantity }}</p>
+            <p>小計：{{ item.subtotal }}円</p>
+        </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,30 @@
+<div class="checkout-container">
+
+<h1>注文内容の確認</h1>
+
+{% if cart_items %}
+    <h2>商品一覧</h2>
+
+    <ul class="checkout-list">
+        {% for item in cart_items %}
+            <li>
+                {{ item.product.name }} × {{ item.quantity }}
+                （小計：{{ item.subtotal }}円）
+            </li>
+        {% endfor %}
+    </ul>
+
+    <p class="total-price">合計金額：{{ total }}円</p>
+
+    <form action="{% url 'order_complete' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="order-btn">注文を確定する</button>
+    </form>
+
+    <a href="{% url 'cart' %}" class="back-link">← カートに戻る</a>
+
+{% else %}
+    <p>カートが空です。</p>
+{% endif %}
+
+</div>

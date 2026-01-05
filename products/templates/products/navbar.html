@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<nav style="background:#222; padding:10px; margin-bottom:20px;">
+    <a href="{% url 'product_list' %}" style="color:white; margin-right:15px;">商品一覧</a>
+    <a href="{% url 'article_list' %}" style="color:white; margin-right:15px;">記事</a>
+
+    {% if user.is_authenticated %}
+        <span style="color:white; margin-right:15px;">
+            ようこそ、{{ user.username }} さん
+        </span>
+        <a href="{% url 'logout' %}" style="color:white;">ログアウト</a>
+    {% else %}
+        <a href="{% url 'login' %}" style="color:white; margin-right:15px;">ログイン</a>
+        <a href="{% url 'signup' %}" style="color:white;">新規登録</a>
+    {% endif %}
+</nav>
+
+{% block page_content %}{% endblock %}
+
+{% endblock %}

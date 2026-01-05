@@ -1,0 +1,20 @@
+{% extends 'products/base.html' %}
+
+{% block content %}
+<h1>記事一覧</h1>
+
+<a href="{% url 'article_create' %}">記事を書く</a>
+<hr>
+
+{% for a in articles %}
+    <h2>
+        <a href="{% url 'article_detail' a.pk %}">
+            {{ a.title }}
+        </a>
+    </h2>
+    <p>{{ a.created_at }}</p>
+    <hr>
+{% empty %}
+    <p>記事がありません</p>
+{% endfor %}
+{% endblock %}

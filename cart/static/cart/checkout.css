@@ -1,0 +1,49 @@
+.checkout-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.checkout-container h1 {
+    margin-bottom: 20px;
+}
+
+.checkout-list {
+    list-style: none;
+    padding: 0;
+}
+
+.checkout-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.total-price {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 20px;
+}
+
+.order-btn {
+    background: #ffd814;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #f0c200;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.order-btn:hover {
+    background: #f7ca00;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+}

@@ -1,0 +1,31 @@
+<div class="detail-container">
+
+    <div class="detail-left">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" class="detail-img">
+        {% else %}
+            <img src="/static/noimage.png" class="detail-img">
+        {% endif %}
+    </div>
+
+    <div class="detail-right">
+
+        <h1 class="detail-title">{{ product.name }}</h1>
+
+        <div class="stars">★★★★☆</div>
+
+        <p class="detail-price">{{ product.price }}円</p>
+
+        <p class="detail-category">カテゴリ：{{ product.get_category_display }}</p>
+
+        <p class="detail-desc">{{ product.description }}</p>
+
+        <!-- ★ カートに入れるフォーム（本物） -->
+        <form action="{% url 'add_to_cart' product.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="add-cart-btn">カートに入れる</button>
+        </form>
+
+    </div>
+
+</div>

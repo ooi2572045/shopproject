@@ -1,0 +1,19 @@
+<div class="product-card">
+
+    <a href="{% url 'product_detail' product.pk %}" class="product-link">
+
+        {% if product.image %}
+            <img src="{{ product.image.url }}" class="product-img">
+        {% else %}
+            <img src="/static/noimage.png" class="product-img">
+        {% endif %}
+
+        <h2 class="product-title">{{ product.name }}</h2>
+
+        <div class="stars">★★★★☆</div>
+
+        <p class="product-price">{{ product.price }}円</p>
+
+    </a>
+
+</div>

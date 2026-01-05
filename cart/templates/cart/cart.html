@@ -1,0 +1,75 @@
+{% load static %}
+<h1>カート</h1>
+<link rel="stylesheet" href="{% static 'cart/cart.css' %}">
+
+{% if cart_items %}
+    <table class="cart-table">
+        <tr>
+            <th>商品</th>
+            <th>数量</th>
+            <th>価格</th>
+            <th>小計</th>
+            <th>操作</th>
+        </tr>
+
+        {% for item in cart_items %}
+        <tr>
+            <td>{{ item.product.name }}</td>
+
+            <td>
+                <form action="{% url 'increase_quantity' item.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">＋</button>
+                </form>
+
+                {{ item.quantity }}
+
+                <form action="{% url 'decrease_quantity' item.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">−</button>
+                </form>
+            </td>
+
+            <td>{{ item.product.price }}円</td>
+
+            <td>{{ item.subtotal }}円</td>
+
+            <td>
+                <form action="{% url 'remove_item' item.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">削除</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>合計：{{ total }}円</h2>
+
+{% else %}
+    <p>カートは空です。</p>
+{% endif %}
+
+<!-- ★ 右下固定の「購入へ進む」ボタン（カートに商品がある時だけ表示） -->
+{% if cart_items %}
+<div style="
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ff9900;
+    padding: 12px 20px;
+    border-radius: 6px;
+">
+    <a href="{% url 'checkout' %}" 
+    style="color: white; text-decoration: none; font-weight: bold;">
+        購入へ進む
+    </a>
+</div>
+{% endif %}
+
+<div style="position: fixed; bottom: 20px; left: 20px;">
+    <a href="/" 
+    style="background: #ddd; padding: 10px 16px; border-radius: 6px; text-decoration: none; color: #333;">
+        ホームへ戻る
+    </a>
+</div>

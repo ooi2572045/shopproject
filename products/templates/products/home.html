@@ -1,0 +1,40 @@
+<h1 class="home-title">ShinreiZone へようこそ</h1>
+<p class="home-sub">恐怖の心霊写真をお探しですか…？</p>
+
+<!-- 検索バー -->
+<form action="{% url 'product_list' %}" method="get" class="home-search">
+    <input type="text" name="q" placeholder="心霊写真を検索…">
+    <button type="submit">検索</button>
+</form>
+
+<hr>
+
+<!-- カテゴリ風リンク -->
+<div class="category-links">
+    <a href="{% url 'product_list' %}?category=tunnel">トンネル</a>
+    <a href="{% url 'product_list' %}?category=hospital">廃病院</a>
+    <a href="{% url 'product_list' %}?category=mountain">山奥</a>
+    <a href="{% url 'product_list' %}?category=school">廃校</a>
+</div>
+
+<hr>
+
+<!-- 新着商品 -->
+<h2>新着の心霊写真</h2>
+
+<div class="product-list">
+    {% for product in products %}
+        <div class="product-card">
+            <a href="{% url 'product_detail' product.pk %}" class="product-link">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" class="product-img">
+                {% else %}
+                    <img src="/static/noimage.png" class="product-img">
+                {% endif %}
+                <h2 class="product-title">{{ product.name }}</h2>
+                <div class="stars">★★★★☆</div>
+                <p class="product-price">{{ product.price }}円</p>
+            </a>
+        </div>
+    {% endfor %}
+</div>  
