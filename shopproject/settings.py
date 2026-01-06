@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -54,7 +55,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'shopproject.wsgi.application'
 
-import dj_database_url
+
 
 DATABASES = {
     'default': dj_database_url.config(
